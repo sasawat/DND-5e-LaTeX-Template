@@ -3,7 +3,7 @@
 % Modified by Christopher Liu December 2015
 % Modified by Yannic Meyer Feb 2016
 
-\ProvidesPackage{dnd}[2016/03/13]
+\ProvidesPackage{dnd}[2016/12/21]
 
 %
 % Prerequisite Packages
@@ -40,11 +40,13 @@
 \newtoggle{bool-bg-a4}
 \newtoggle{bool-bg-print}
 \newtoggle{bool-bg-none}
+\newtoggle{bool-greyscale}
 \DeclareOption{bg-none}{\toggletrue{bool-bg-none}}
 \DeclareOption{bg-a4}{\toggletrue{bool-bg-a4}}
 \DeclareOption{bg-letter}{\togglefalse{bool-bg-a4}}
 \DeclareOption{bg-print}{\toggletrue{bool-bg-print}}
 \DeclareOption{bg-full}{\togglefalse{bool-bg-print}}
+\DeclareOption{greyscale}{\toggletrue{bool-greyscale}}
 
 % Default Settings
 \ExecuteOptions{bg-letter, bg-full}
@@ -79,16 +81,30 @@
 
 % Define colors, sampled from the books.
 \usepackage{color}
-\definecolor{bgtan}{HTML}{F7F2E5}		% e.g. used for background and quotebox
-\definecolor{titlered}{HTML}{58180D}	% e.g. used for titles
-\definecolor{undergold}{HTML}{C9AD6A}	% e.g. used for titlerules
-\definecolor{uppergold}{HTML}{B89A67}	%e.g. used for pagenumbers and footer
-\definecolor{puregold}{HTML}{E69A28}	%e.g. used for top line in newer monsterbox
-\definecolor{monstertan}{HTML}{FDF1DC}	%e.g. used for newer monsterblock
-\definecolor{monstertandark}{HTML}{F0DBB5}	%e.g. used for older monsterbox
-\definecolor{commentgreen}{HTML}{E0E5C1} % e.g. used in table and green commentbox
-\definecolor{itemtablepink}{HTML}{E9CDC2} % e.g. used in item tables instead of the green
-\definecolor{rulered}{HTML}{9C2B1B}		%e.g. used for triangular rule in statsblock
+\nottoggle{bool-greyscale}{
+	\definecolor{bgtan}{HTML}{F7F2E5}		% e.g. used for background and quotebox
+	\definecolor{titlered}{HTML}{58180D}	% e.g. used for titles
+	\definecolor{undergold}{HTML}{C9AD6A}	% e.g. used for titlerules
+	\definecolor{uppergold}{HTML}{B89A67}	%e.g. used for pagenumbers and footer
+	\definecolor{puregold}{HTML}{E69A28}	%e.g. used for top line in newer monsterbox
+	\definecolor{monstertan}{HTML}{FDF1DC}	%e.g. used for newer monsterblock
+	\definecolor{monstertandark}{HTML}{F0DBB5}	%e.g. used for older monsterbox
+	\definecolor{commentgreen}{HTML}{E0E5C1} % e.g. used in table and green commentbox
+	\definecolor{itemtablepink}{HTML}{E9CDC2} % e.g. used in item tables instead of the green
+	\definecolor{rulered}{HTML}{9C2B1B}		%e.g. used for triangular rule in statsblock
+}
+\iftoggle{bool-greyscale}{
+	\definecolor{bgtan}{HTML}{F0F0F0}		% e.g. used for background and quotebox
+	\definecolor{titlered}{HTML}{000000}	% e.g. used for titles
+	\definecolor{undergold}{HTML}{000000}	% e.g. used for titlerules
+	\definecolor{uppergold}{HTML}{000000}	%e.g. used for pagenumbers and footer
+	\definecolor{puregold}{HTML}{909090}	%e.g. used for top line in newer monsterbox
+	\definecolor{monstertan}{HTML}{EAEAEA}	%e.g. used for newer monsterblock
+	\definecolor{monstertandark}{HTML}{E0E0E0}	%e.g. used for older monsterbox
+	\definecolor{commentgreen}{HTML}{D5D5D5} % e.g. used in table and green commentbox
+	\definecolor{itemtablepink}{HTML}{CFCFCF} % e.g. used in item tables instead of the green
+	\definecolor{rulered}{HTML}{000000}		%e.g. used for triangular rule in statsblock
+}
 
 % Setup for custom footer
 \pagestyle{fancy}
